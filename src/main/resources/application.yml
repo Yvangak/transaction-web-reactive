@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: transaction-web-reactive-demo
+
+  data:
+    mongodb:
+      database: transaction-messages
+      uri: mongodb://localhost:27017
+      repositories:
+        enabled: true
