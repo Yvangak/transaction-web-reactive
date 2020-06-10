@@ -19,6 +19,7 @@ import java.util.Date;
 public class Transaction {
     @Id
     private String id;
+    private String transactionCode;
     private Bank bank;
     private Transaction transactionType;
     private Double amount;
