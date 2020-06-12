@@ -2,7 +2,7 @@ package com.gakyvan.playground;
 
 import reactor.core.publisher.Flux;
 
-public class MonoAndFluxAndDemo {
+public class MonoFluxDemo {
     public static void main(String... args) {
         //fluxSetUpWithLogToShowStepsAndEndsInOnComplete();
 

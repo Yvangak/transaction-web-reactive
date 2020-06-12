@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-public class MonoAndFlaskTest {
+public class FluxTest {
 
     @Test
     public void givenFluxWithElements_shouldVerifyTheFlowAndReceiveAOnCompleteEvent() {
