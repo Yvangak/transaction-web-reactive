@@ -99,4 +99,22 @@ class DemoControllerTest {
                    assertEquals(expected, transactionResponse.getResponseBody());
                 });
     }
+
+    @Test
+    public void whenInfiniteStreamEndPoint_shouldTestInfiniteStream() {
+        Flux<Long> actual = webTestClient.get()
+                .uri("/api/transactionManager/infiniteStream")
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .returnResult(Long.class)
+                .getResponseBody();
+
+        StepVerifier.create(actual)
+                .expectNext(0l)
+                .expectNext(1L)
+                .expectNext(2L)
+                .thenCancel()
+                .verify();
+    }
 }

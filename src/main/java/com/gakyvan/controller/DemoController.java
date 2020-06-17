@@ -13,7 +13,7 @@ import java.time.Duration;
 @RequestMapping(path = "/api/transactionManager")
 public class DemoController {
     @GetMapping(path = "/demo", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
-    public Flux<Transaction> getTransactions(){
+    public Flux<Transaction> getTransactions() {
         Transaction firstTransaction = Transaction.builder()
                 .id("TR00-00-00-1")
                 .amount(20.00)
@@ -27,6 +27,12 @@ public class DemoController {
 
         return Flux.just(firstTransaction, secondTransaction)
                 .delayElements(Duration.ofSeconds(1))
+                .log();
+    }
+
+    @GetMapping(path = "/infiniteStream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Flux<Long> getInfiniteStream() {
+        return Flux.interval(Duration.ofSeconds(1))
                 .log();
     }
 }
