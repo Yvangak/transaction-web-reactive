@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
@@ -33,6 +34,18 @@ public class DemoController {
     @GetMapping(path = "/infiniteStream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<Long> getInfiniteStream() {
         return Flux.interval(Duration.ofSeconds(1))
+                .log();
+    }
+
+    @GetMapping(path = "/mono", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<Transaction> getTransaction(){
+        Transaction firstTransaction = Transaction.builder()
+                .id("TR00-00-00-1")
+                .amount(20.00)
+                .cardHolder("CARD-000-99989-00")
+                .build();
+
+        return Mono.just(firstTransaction)
                 .log();
     }
 }

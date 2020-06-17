@@ -101,6 +101,25 @@ class DemoControllerTest {
     }
 
     @Test
+    public void whenMonoDemoEndPointCalled_shouldReturnTransactionAndStatusOk() {
+        Transaction expected = Transaction.builder()
+                .id("TR00-00-00-1")
+                .amount(20.00)
+                .cardHolder("CARD-000-99989-00")
+                .build();
+        webTestClient.get()
+                .uri("/api/transactionManager/mono")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody(Transaction.class)
+                .consumeWith(actual ->{
+                    assertEquals(expected, actual.getResponseBody());
+                });
+    }
+
+    @Test
     public void whenInfiniteStreamEndPoint_shouldTestInfiniteStream() {
         Flux<Long> actual = webTestClient.get()
                 .uri("/api/transactionManager/infiniteStream")
