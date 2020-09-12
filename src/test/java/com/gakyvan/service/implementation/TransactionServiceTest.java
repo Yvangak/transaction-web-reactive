@@ -28,7 +28,7 @@ public class TransactionServiceTest {
     public void setUp() {
         subject = new TransactionService(iTransactionRepository);
         transaction = Transaction.builder()
-                .id(UUID.randomUUID().toString().toUpperCase())
+                ._id(UUID.randomUUID().toString().toUpperCase())
                 .transactionCode("TR00-00-00-1")
                 .amount(20.00)
                 .cardHolder("CARD-000-99989-00")
